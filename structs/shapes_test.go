@@ -5,28 +5,36 @@ import "testing"
 func TestArea(t *testing.T) {
 
 	areaTests := []struct {
-		shape        Shape
-		expectedArea float64
+		name    string
+		shape   Shape
+		hasArea float64
 	}{
 		{
-			shape:        Rectangle{width: 1.0, height: 2.0},
-			expectedArea: 2.0,
+			name:    "Rectangle",
+			shape:   Rectangle{width: 1.0, height: 2.0},
+			hasArea: 2.0,
 		},
 		{
-			shape:        Circle{radius: 1.0},
-			expectedArea: 3.141592653589793,
+			name:    "Circle",
+			shape:   Circle{radius: 1.0},
+			hasArea: 3.141592653589793,
 		},
 		{
-			shape:        Triangle{base: 1.0, height: 2.0},
-			expectedArea: 1.0,
+			name:    "Triangle",
+			shape:   Triangle{base: 1.0, height: 2.0},
+			hasArea: 1.0,
 		},
 	}
 
 	for _, test := range areaTests {
-		got := test.shape.Area()
-		if got != test.expectedArea {
-			t.Errorf("For shape %#v , Got %f expected %f", test.shape, got, test.expectedArea)
-		}
+		// go test -run TestArea/Rectangle
+		t.Run(test.name, func(t *testing.T) {
+			got := test.shape.Area()
+			if got != test.hasArea {
+				t.Errorf("For shape %#v , Got %f expected %f", test.shape, got, test.hasArea)
+			}
+		})
+
 	}
 	// checkAreaFn := func(t *testing.T, shape Shape, expectedArea float64) {
 	// 	area := shape.Area()
