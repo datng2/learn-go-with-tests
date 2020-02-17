@@ -8,9 +8,18 @@ func TestArea(t *testing.T) {
 		shape        Shape
 		expectedArea float64
 	}{
-		{shape: Rectangle{width: 1.0, height: 2.0}, expectedArea: 2.0},
-		{shape: Circle{radius: 1.0}, expectedArea: 3.141592653589793},
-		{shape: Triangle{base: 1.0, height: 2.0}, expectedArea: 2.0},
+		{
+			shape:        Rectangle{width: 1.0, height: 2.0},
+			expectedArea: 2.0,
+		},
+		{
+			shape:        Circle{radius: 1.0},
+			expectedArea: 3.141592653589793,
+		},
+		{
+			shape:        Triangle{base: 1.0, height: 2.0},
+			expectedArea: 1.0,
+		},
 	}
 
 	for _, test := range areaTests {
