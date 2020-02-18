@@ -8,6 +8,7 @@ type Dictionary map[string]string
 const (
 	ErrDefinitionNotFound = DictErr("Undefined word")
 	ErrWordExists         = DictErr("Word is existed, use Update instead.")
+	ErrWordDoesNotExist   = DictErr("World does not exist, cannot update.")
 )
 
 type DictErr string
@@ -30,5 +31,26 @@ func (d Dictionary) Add(word, definition string) error {
 	}
 
 	d[word] = definition
+	return nil
+}
+
+func (d Dictionary) Update(word, newDefinition string) error {
+	_, ok := d.Search(word)
+	if ok == ErrDefinitionNotFound {
+		return ErrWordDoesNotExist
+	}
+
+	d[word] = newDefinition
+	return nil
+}
+
+func (d Dictionary) Delete(word string) error {
+	_, ok := d.Search(word)
+	if ok == ErrDefinitionNotFound {
+		return ErrWordDoesNotExist
+	}
+
+	// built-in feature of Go to delete an entry from map
+	delete(d, word)
 	return nil
 }
