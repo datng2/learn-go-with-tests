@@ -1,8 +1,5 @@
 package maps
 
-// Dictionary maps a word to its definition
-type Dictionary map[string]string
-
 // Why to use constant errors
 // https://dave.cheney.net/2016/04/07/constant-errors
 const (
@@ -14,6 +11,9 @@ const (
 type DictErr string
 
 func (e DictErr) Error() string { return string(e) }
+
+// Dictionary maps a word to its definition
+type Dictionary map[string]string
 
 // Search returns a word's definition
 func (d Dictionary) Search(word string) (string, error) {

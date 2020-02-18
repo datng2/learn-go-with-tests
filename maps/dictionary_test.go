@@ -20,7 +20,6 @@ func TestDictionary(t *testing.T) {
 
 		err := dict.Add("test", "new test")
 		assertError(t, err, ErrWordExists)
-
 	})
 
 	t.Run("Update", func(t *testing.T) {
@@ -30,7 +29,6 @@ func TestDictionary(t *testing.T) {
 
 		err := dict.Update("aaa", "aaa")
 		assertError(t, err, ErrWordDoesNotExist)
-
 	})
 
 	t.Run("Delete", func(t *testing.T) {
@@ -40,7 +38,6 @@ func TestDictionary(t *testing.T) {
 
 		err := dict.Delete("test")
 		assertError(t, err, ErrWordDoesNotExist)
-
 	})
 
 }
